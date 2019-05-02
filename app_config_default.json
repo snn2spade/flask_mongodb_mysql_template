@@ -1,0 +1,22 @@
+{
+  "FLASK_RUNNING_PORT": 5000,
+  "FLASK_RUNNING_IP": "0.0.0.0",
+  "FLASK_ENABLE_DEBUGGING": false,
+  "UTC_DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%SZ",
+  "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S",
+  "DATE_FORMAT": "%Y-%m-%d",
+  "APP_NAME": "flask-mysql-mongodb-template",
+  "MONGO": {
+    "HOST": "[MONGO_HOST]",
+    "USERNAME": "[MONGO_USERNAME]",
+    "PASSWORD": "[MONGO_PASSWORD]",
+    "DB_NAME": "[MONGO_DB_NAME]",
+    "AUTH_DB_NAME": "[MONGO_AUTH_DB_NAME]"
+  },
+  "MYSQL": {
+    "DB_HOST": "[MYSQL_DB_HOST]",
+    "DB_NAME": "[MYSQL_DB_NAME]",
+    "DB_USERNAME": "[MYSQL_DB_USERNAME]",
+    "DB_PASSWORD": "[MYSQL_DB_PASSWORD]"
+  }
+}
