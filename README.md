@@ -4,6 +4,10 @@
 ```
 docker >= 19.03
 ```
+### create configuration file
+```
+cp app_config.example.json app_config.json
+```
 ### Start docker
 ```
 docker-compose up -d --build
@@ -35,20 +39,22 @@ coverage run --source=app -m pytest
 coverage report
 ```
 then you can open report on `htmlcov/index.html`
-### create new configuration file
+### create configuration file
 ```
 cp app_config.example.json app_config.json
+```
+### setup the MongoDB connection
+```
 nano app_config.json
-```
-### edit the MongoDB connection
-```
-"MONGO": {
-  "HOST": "[MONGO_HOST]",
-  "USERNAME": "[MONGO_USERNAME]",
-  "PASSWORD": "[MONGO_PASSWORD]",
-  "DB_NAME": "[MONGO_DB_NAME]",
-  "AUTH_DB_NAME": "[MONGO_AUTH_DB_NAME]"
-}
+    ...
+    "MONGO": {
+      "HOST": "[MONGO_HOST]",
+      "USERNAME": "[MONGO_USERNAME]",
+      "PASSWORD": "[MONGO_PASSWORD]",
+      "DB_NAME": "[MONGO_DB_NAME]",
+      "AUTH_DB_NAME": "[MONGO_AUTH_DB_NAME]"
+    }
+    ...
 ```
 ### run migration script
 ```
