@@ -1,10 +1,9 @@
-import datetime
 from typing import List
 
 from pymongo.results import InsertOneResult
 
-from backend.MongoDBConnectorService import MongoDBConnectorService
-from backend.model.mongo.Job import Job
+from app.backend.service.mongo_db_connector_service import MongoDBConnectorService
+from app.backend.model.job import Job
 
 
 class JobController:
@@ -14,9 +13,7 @@ class JobController:
 
     def insert_one(self, job: Job) -> InsertOneResult:
         db = self._mongo_db_connector_service.get_db()
-        job_dict = job.to_dict()
-        job_dict["created_date"] = datetime.datetime.now()
-        return db[self._collection_name].insert_one(job_dict)
+        return db[self._collection_name].insert_one(job.to_dict())
 
     def find_all(self) -> List[Job]:
         db = self._mongo_db_connector_service.get_db()

@@ -1,17 +1,19 @@
 import datetime
 import json
 import os
+
 from logging.config import dictConfig
 
 
 class LoggerLoader:
     @classmethod
     def load_config_json(cls, text):
-        dateTag = datetime.datetime.now().strftime("%Y-%m-%d")
+        date_tag = datetime.datetime.now().strftime("%Y-%m-%d")
         config = json.load(text)
-        config['handlers']['info_file_handler']['filename'] = "log/%s_%s.log" % (config['handlers']['info_file_handler']['filename'], dateTag)
+        config['handlers']['info_file_handler']['filename'] = "log/%s_%s.log" % (
+            config['handlers']['info_file_handler']['filename'], date_tag)
         config['handlers']['error_file_handler']['filename'] = "log/%s_%s.log" % (
-            config['handlers']['error_file_handler']['filename'], dateTag)
+            config['handlers']['error_file_handler']['filename'], date_tag)
         dictConfig(config)
 
     def __init__(self):

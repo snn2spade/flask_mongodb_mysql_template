@@ -9,4 +9,4 @@ WORKDIR /code
 RUN pip install -r requirements.txt
 
 COPY /app /code/app/
-CMD ["python", "app/app.py"]
+CMD ["python","-m", "app.app"]

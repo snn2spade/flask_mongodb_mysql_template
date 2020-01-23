@@ -16,14 +16,18 @@ class Singleton(type):
 class AppConfig(metaclass=Singleton):
     config = {}
 
-    def __init__(self):
-        try:
-            with open('app_config.json', 'r') as f:
+    def __init__(self, app_config_path: str = None):
+        if app_config_path is not None:
+            with open(app_config_path, 'r') as f:
                 self.config = json.load(f)
-        except FileNotFoundError:
+        else:
             try:
-                with open('../app_config.json', 'r') as f:
+                with open('app_config.json', 'r') as f:
                     self.config = json.load(f)
             except FileNotFoundError:
-                with open(Path(__file__).parent.parent.joinpath('app_config.json'), 'r') as f:
-                    self.config = json.load(f)
+                try:
+                    with open('../app_config.json', 'r') as f:
+                        self.config = json.load(f)
+                except FileNotFoundError:
+                    with open(Path(__file__).parent.parent.joinpath('app_config.json'), 'r') as f:
+                        self.config = json.load(f)
