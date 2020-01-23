@@ -8,7 +8,10 @@ docker >= 19.03
 ```
 docker-compose up -d --build
 ```
-then open browser and go to http://localhost:5000/info 
+then open browser and go to http://localhost:5000/info <br>
+to add todo task http://localhost:5000/todo/add_task/milk <br>
+to get todo list http://localhost:5000/todo/get_task_list <br>
+ 
 ## Run as Local
 ### Prerequisite
 ```

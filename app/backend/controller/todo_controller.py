@@ -3,12 +3,12 @@ import sys
 
 from flask import Blueprint, jsonify
 
-from app.backend.model.job import Job
-from app.backend.model.job_controller import JobController
+from app.backend.model.todo import Todo
+from app.backend.model.todo_controller import TodoController
 from app.backend.service.mongo_db_connector_service import MongoDBConnectorService
 
 todo_blueprint = Blueprint('todo', __name__, url_prefix='/todo')
-job_controller = JobController(MongoDBConnectorService())
+todo_controller = TodoController(MongoDBConnectorService())
 
 log = logging.getLogger('app.' + __name__)
 # Temporary logging stdout for class debugging
@@ -17,18 +17,18 @@ if __name__ == "__main__":
     log.addHandler(logging.StreamHandler(sys.stdout))
 
 
-@todo_blueprint.route('/get_job_list')
-def get_job_list():
-    log.info("client request for job list.")
-    job_list = [job.to_dict() for job in job_controller.find_all()]
-    return jsonify(job_list), 200, {'ContentType': 'application/json'}
+@todo_blueprint.route('/get_task_list')
+def get_task_list():
+    log.info("client request for task list.")
+    task_list = [task.to_dict() for task in todo_controller.find_all()]
+    return jsonify(task_list), 200, {'ContentType': 'application/json'}
 
 
-@todo_blueprint.route('/add_job/<job_title>', methods=['GET'])
-def add_job(job_title):
-    log.info(f"client request adding job: {job_title}")
+@todo_blueprint.route('/add_task/<todo_title>', methods=['GET'])
+def add_task(todo_title):
+    log.info(f"client request adding task: {todo_title}")
     try:
-        inserted_result = job_controller.insert_one(Job(job_title))
+        inserted_result = todo_controller.insert_one(Todo(todo_title))
     except Exception as err:
         log.exception(err)
         return jsonify({"success": False, "msg": "Exception: [{}] {}".format(type(err).__name__, str(err))}), 500, {
