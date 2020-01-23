@@ -1,4 +1,14 @@
 # GETTING STATED
+## Run with Docker-compose
+### Prerequisite
+```
+docker >= 19.03
+```
+### Start docker
+```
+docker-compose up -d --build
+```
+then open browser and go to http://localhost:5000/info 
 ## Run as Local
 ### Prerequisite
 ```
@@ -44,15 +54,5 @@ python migrate.py
 ### run Flask server
 ```
 python -m app.app
-```
-then open browser and go to http://localhost:5000/info 
-## Run with Docker-compose
-### Prerequisite
-```
-docker >= 19.03
-```
-### Start docker
-```
-docker-compose up -d --build
 ```
 then open browser and go to http://localhost:5000/info 
