@@ -10,7 +10,7 @@ from app.backend.service.mongo_db_connector_service import MongoDBConnectorServi
 todo_blueprint = Blueprint('todo', __name__, url_prefix='/todo')
 todo_controller = TodoController(MongoDBConnectorService())
 
-log = logging.getLogger('app.' + __name__)
+log = logging.getLogger(__name__)
 # Temporary logging stdout for class debugging
 if __name__ == "__main__":
     log.setLevel(logging.DEBUG)
@@ -19,14 +19,14 @@ if __name__ == "__main__":
 
 @todo_blueprint.route('/get_task_list')
 def get_task_list():
-    log.info("client request for task list.")
+    log.debug("client request for task list.")
     task_list = [task.to_dict() for task in todo_controller.find_all()]
     return jsonify(task_list), 200, {'ContentType': 'application/json'}
 
 
 @todo_blueprint.route('/add_task/<todo_title>', methods=['GET'])
 def add_task(todo_title):
-    log.info(f"client request adding task: {todo_title}")
+    log.debug(f"client request adding task: {todo_title}")
     try:
         inserted_result = todo_controller.insert_one(Todo(todo_title))
     except Exception as err:
